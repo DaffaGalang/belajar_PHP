@@ -24,6 +24,11 @@
         <label for="ttl">Tanggal Lahir</label><br>
         <input type="text" id="ttl" name="ttl"><br><br>
 
+        <label for="email">Email</label><br> 
+        <input type="text" id="email" name="email"><br><br>
+        <!-- type"email" membantu browser user untuk mengisi email sesuai ketemtuann penulisan
+         dan apabila ingin mencoba untuk melihat cara kerja validasai email pada php maka ganti type menjadi "text "--> 
+
         <input type="submit" value="Kirim">
     </form>
 
