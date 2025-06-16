@@ -17,17 +17,17 @@
         <input type="submit" value="kirim"><br><br>
     </form> -->
 
-    <form action="aye.php" method="GET">
-        <label for="name">Nama</label><br>
-        <input type="text" id="name" name="name"><br><br>
-        <input type="submit" value="kirim">
-    </form>
-
     <form action="aye.php" method="POST">
         <label for="name">Nama</label><br>
         <input type="text" id="name" name="name"><br><br>
+
+        <label for="ttl">Tanggal Lahir</label><br>
+        <input type="text" id="ttl" name="ttl"><br><br>
+
         <input type="submit" value="Kirim">
     </form>
+
+    <!-- test koment -->
 
 
 </body>
