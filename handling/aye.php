@@ -14,10 +14,12 @@
 $errors = [];
 
 if (isset($_POST['name']) && isset($_POST['ttl']) && isset($_POST['email']) 
-    && !empty($_POST['name']) && !empty($_POST['ttl']) && !empty($_POST['email'])) { //bisa menggunakan isset() atau !empty()
+    && !empty($_POST['name']) && !empty($_POST['ttl']) && !empty($_POST['email'])) {
     $name = $_POST['name'];
     $ttl = $_POST['ttl'];
     $email = $_POST['email'];
+    // isset = memastika data dikirim dari form
+    // !empty = memastikan data tidak kosong
 
     // Validasi email
     if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
@@ -28,7 +30,7 @@ if (isset($_POST['name']) && isset($_POST['ttl']) && isset($_POST['email'])
         echo "Email saya adalah " . htmlspecialchars($email);
     }
 } else {
-    $errors[] = "Semua data harus diisi";
+    $errors[] = "Semua data harus diisi / isi data dengan benar";
 }
 
 // Tampilkan error jika ada
