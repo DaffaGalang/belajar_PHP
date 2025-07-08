@@ -1,5 +1,5 @@
 <?php
-$error = [];
+$error = '';
 
 if(isset($_POST['name']) && isset($_POST['nim']) && isset($_POST['semester']) && isset($_POST['matkul'])
 && !empty($_POST['name']) && !empty($_POST['nim']) && !empty($_POST['semester']) && !empty($_POST['matkul'])){

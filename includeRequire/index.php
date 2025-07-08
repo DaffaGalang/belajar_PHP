@@ -8,6 +8,8 @@
 <body>
 
 <?php
+
+    //function
     function diri(){
         echo "Hallo semua nama saya galang <br><br>";
     }
@@ -20,7 +22,11 @@
       mengekseskusi kode dibawahnya apabila penggunaannya terdapat kesalahan  
     */
 
+    // test include dan require (kode di bawah incude tetap jalan walau include error) 
+    // (kode di bawah require berhenti jalan ketika require error)
     include 'hallo.php';
+    require '../handling/test.php'; //contoh akses file lain
+    echo "<br>";
     
     diri();
     echo " test";
