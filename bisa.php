@@ -7,7 +7,7 @@
 </head>
 <body>
 
-<form action="join.php" method="post">
+<form action="" method="post">
 <label for="nim">NIM</label>
 <input type="text" name="nim" id="nim"><br><br>
 

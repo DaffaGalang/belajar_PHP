@@ -1,21 +1,18 @@
 <?php
 
     $errors = [];
+if($_SERVER ['REQUEST_METHOD'] == "POST"){
+    if(isset($_POST['id_pasien'], $_POST['nama_pasien'], $_POST['jadwal'], $_POST['no_hp']) 
+    && !empty($_POST['id_pasien']) && !empty($_POST['nama_pasien']) && !empty($_POST['jadwal']) && !empty($_POST['no_hp'])){
+        $id_pasien = $_POST['id_pasien'];
+        $nama_pasien = $_POST['nama_pasien'];
+        $no_hp = $_POST['no_hp'];
+        $jadwal = $_POST['jadwal'];
 
-    if(isset($_POST['nim']) && isset($_POST['nama']) && isset($_POST['prodi']) && isset($_POST['email']) 
-    && !empty($_POST['nim']) && !empty($_POST['nama']) && !empty($_POST['prodi']) && !empty($_POST['email'])){
-        $nim = $_POST['nim'];
-        $nama = $_POST['nama'];
-        $email = $_POST['email'];
-        $prodi = $_POST['prodi'];
-                if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-                    $errors[] = "Format email tidak valid";
-                } else {
-                echo "NIM Saya adalah " . htmlspecialchars($nim) . "<br>";
-                echo "Nama Saya adalah " . htmlspecialchars($nama). "<br>";
-                echo "Dengan Email " . htmlspecialchars($email). "<br>";
-                echo "Prodi saya adalah " . htmlspecialchars($prodi). "<br>";
-        }
+                echo "Id Pasien " . htmlspecialchars($id_pasien) . "<br>";
+                echo "Nama " . htmlspecialchars($nama_pasien). "<br>";
+                echo "No HP " . htmlspecialchars($no_hp). "<br>";
+                echo "jadwal saya " . htmlspecialchars($jadwal). "<br>";
     } else {
         $errors[] = "Semua data harus diisi / isi data dengan benar";
     }
@@ -24,6 +21,7 @@
     foreach ($errors as $error) {
         echo "<p style='color:red;'>$error</p>";
     }
+}
 
 
 
@@ -41,7 +39,7 @@
 //     if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
 //         $errors[] = "Format email tidak valid";
 //     } else {
-//         echo "Nama saya adalah " . htmlspecialchars($name) . "<br>";
+//         echo "Nama_pasien saya adalah " . htmlspecialchars($name) . "<br>";
 //         echo "Tempat tanggal lahir saya adalah " . htmlspecialchars($ttl) . "<br>";
 //         echo "Email saya adalah " . htmlspecialchars($email);
 //     }
