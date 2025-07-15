@@ -43,7 +43,7 @@ $no = $offset + 1;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tambah Data Mahasiswa</title>
+    <title>Data Mahasiswa</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
