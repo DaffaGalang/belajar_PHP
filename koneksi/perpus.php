@@ -1,7 +1,7 @@
 <?php
-require("koneksi.php");
+include("koneksi.php");
 
-$bayam = query ("SELECT * FROM perpus ORDER BY id_buku ASC");
+$link = query ("SELECT * FROM perpus ORDER BY id_buku ASC");
 
 $no = 1;
 
@@ -29,7 +29,7 @@ $no = 1;
                 <!-- Navigasi -->
                 <div class="flex gap-2">
                     <a href="#" class="px-2 py-2 bg-purple-800 text-white rounded hover:bg-purple-700">Kembali ←</a>
-                    <a href="#" class="px-5 py-2 bg-violet-600 text-white rounded hover:bg-violet-500">Tambah Data +</a>
+                    <a href="tambahBuku.php" class="px-5 py-2 bg-violet-600 text-white rounded hover:bg-violet-500">Tambah Data Buku</a>
                 </div>
                 <!-- Pencarian -->
                 <form method="GET" action="" class="flex items-center gap-2 mb-4">
@@ -52,7 +52,7 @@ $no = 1;
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($bayam as $data) : ?>
+                    <?php foreach ($link as $data) : ?>
                         <tr class='border-t'>
                             <td class='px-4 py-2'><?= $no++ ?></td>
                             <td class='px-4 py-2'><?= htmlspecialchars($data['no_reg']) ?></td>
@@ -79,6 +79,7 @@ $no = 1;
                 </tbody>
             </table>
         </div>
+    </div>
 </body>
 
 </html>

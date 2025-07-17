@@ -64,8 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Tambah Data Mahasiswa</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <body"class="bg-gray-100">
+<body class="bg-gray-100">
     <div class="max-w-2xl mx-auto mt-10 bg-white p-8 rounded shadow">
         <h2 class="text-xl font-semibold mb-4">Tambah Data Mahasiswa</h2>
 
@@ -78,15 +77,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <form method="post" enctype="multipart/form-data" class="space-y-4">
             <!-- NIM -->
             <div>
-                <label class="block mb-1 font-medium text-gray-700">NIM</label>
-                <input type="text" name="nim" class="w-full border p-2 rounded" value="<?= htmlspecialchars($nim) ?>" required>
+                <label for="nim" class="block mb-1 font-medium text-gray-700">NIM</label>
+                <input type="text" name="nim" id="nim" class="w-full border p-2 rounded" value="<?= htmlspecialchars($nim) ?>" required>
 
             </div>
 
             <!-- Nama -->
             <div>
-                <label class="block mb-1 font-medium text-gray-700">Nama Mahasiswa</label>
-                <input type="text" name="nama" class="w-full border p-2 rounded" value="<?= htmlspecialchars($nama) ?>" required>
+                <label for="nama" class="block mb-1 font-medium text-gray-700">Nama Mahasiswa</label>
+                <input type="text" name="nama" id="nama" class="w-full border p-2 rounded" value="<?= htmlspecialchars($nama) ?>" required>
             </div>
 
             <!-- Jenis Kelamin -->
@@ -94,33 +93,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label class="block mb-1 font-medium text-gray-700">Jenis Kelamin</label>
                 <select name="jk" class="w-full border p-2 rounded">
                     <option value="">Pilih Jenis Kelamin</option>
-                    <option value="laki laki" <?= $jk == 'laki laki' ? 'selected' : '' ?>>Laki-laki</option>
-                    <option value="perempuan" <?= $jk == 'perempuan' ? 'selected' : '' ?>>Perempuan</option>
+                    <option value="Laki Laki" <?= $jk == 'Laki Laki' ? 'selected' : '' ?>>Laki-laki</option>
+                    <option value="Perempuan" <?= $jk == 'Perempuan' ? 'selected' : '' ?>>Perempuan</option>
                 </select>
             </div>
 
             <!-- TTL -->
             <div>
-                <label class="block mb-1 font-medium text-gray-700">Tempat Tanggal Lahir</label>
-                <input type="text" name="ttl" class="w-full border p-2 rounded" value="<?= htmlspecialchars($ttl) ?>" required>
+                <label for="ttl" class="block mb-1 font-medium text-gray-700">Tempat Tanggal Lahir</label>
+                <input type="text" name="ttl" id="ttl" class="w-full border p-2 rounded" value="<?= htmlspecialchars($ttl) ?>" required>
             </div>
 
             <!-- Email -->
             <div>
-                <label class="block mb-1 font-medium text-gray-700">Email</label>
-                <input type="text" name="email" class="w-full border p-2 rounded" value="<?= htmlspecialchars($email) ?>" required>
+                <label for="email" class="block mb-1 font-medium text-gray-700">Email</label>
+                <input type="text" name="email" id="email" class="w-full border p-2 rounded" value="<?= htmlspecialchars($email) ?>" required>
             </div>
 
             <!-- jurusan -->
             <div>
-                <label class="block mb-1 font-medium text-gray-700">Jurusan</label>
-                <input type="text" name="jurusan" class="w-full border p-2 rounded" value="<?= htmlspecialchars($jurusan) ?>" required>
+                <label for="jurusan" class="block mb-1 font-medium text-gray-700">Jurusan</label>
+                <input type="text" name="jurusan" id="jurusan" class="w-full border p-2 rounded" value="<?= htmlspecialchars($jurusan) ?>" required>
             </div>
 
             <!-- Upload Foto -->
             <div>
-                <label class="block mb-1 font-medium text-gray-700">Foto</label>
-                <input type="file" name="foto" class="w-full border p-2 rounded">
+                <label for="foto" class="block mb-1 font-medium text-gray-700">Foto</label>
+                <input type="file" name="foto" id="foto" class="w-full border p-2 rounded">
             </div>
 
             <!-- Tombol -->
