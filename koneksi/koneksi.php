@@ -21,14 +21,22 @@ function query($query)
 
 function tambah($data) {
     global $koneksi;
+
     $no_reg = $data["no_reg"];
     $judul = $data["judul"];
     $pengarang = $data["pengarang"];
     $tema = $data["tema"];
-    $sampul = $data["sampul"];
+
+    // Tangani upload gambar
+    $namaFile = $_FILES['sampul']['name'];
+    $tmpName = $_FILES['sampul']['tmp_name'];
+
+    // Simpan ke folder uploads
+    $uploadDir = "uploads/";
+    move_uploaded_file($tmpName, $uploadDir . $namaFile);
 
     $query = "INSERT INTO perpus (no_reg, judul, pengarang, tema, sampul) VALUES 
-            ('$no_reg', '$judul', '$pengarang', '$tema', '$sampul')";
+            ('$no_reg', '$judul', '$pengarang', '$tema', '$namaFile')";
     mysqli_query($koneksi, $query);
     return mysqli_affected_rows($koneksi); 
 }

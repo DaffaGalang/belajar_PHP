@@ -47,8 +47,8 @@ $no = 1;
                         <th class="px-4 py-2 text-left">Judul Buku</th>
                         <th class="px-4 py-2 text-left">Pengarang</th>
                         <th class="px-4 py-2 text-left">Tema</th>
-                        <th class="px-4 py-2 text-left">Sampul</th>
-                        <th class="px-4 py-2 text-left">Aksi</th>
+                        <th class="px-4 py-2 text-center">Sampul</th>
+                        <th class="px-4 py-2 text-center">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -60,13 +60,13 @@ $no = 1;
                             <td class='px-4 py-2'><?= htmlspecialchars($data['pengarang']) ?></td>
                             <td class='px-4 py-2'><?= htmlspecialchars($data['tema']) ?></td>
                             <td class='px-4 py-2'>
-                                <img src="uploads/<?= htmlspecialchars($data['sampul']) ?>" alt="Sampul" class="h-16">
+                                <img src="uploads/<?= htmlspecialchars($data['sampul']) ?>" alt="Sampul" class="w-24 h-auto rounded shadow">
                             </td>
                             <td class='px-7 py-8 flex gap-2'>
                                 <!-- tombol aksi -->
                                 <a href='edit.php?id=<?= $data['id_buku'] ?>'
                                     class='inline-block px-3 py-1 text-sm bg-yellow-500 text-white rounded hover:bg-yellow-600 transition'>
-                                    ✏️ Edit
+                                     ✏️ Edit
                                 </a>
 
                                 <a href='hapus.php?id=<?= $data['id_buku'] ?>'

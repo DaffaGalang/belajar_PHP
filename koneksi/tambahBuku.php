@@ -13,15 +13,31 @@ if (isset($_POST["submit"])) {
 
     $hasil = tambah($_POST); //Masukan fungsi tambah pada variabel $hasil
     if ($hasil > 0) {
-        echo "✅ Data berhasil ditambahkan!";
-        echo "<br>";
-        echo "<script>
-                setTimeout(function() {
-                    window.location.href = 'perpus.php';
-                }, 100);
-            </script>";
+        echo "
+            <script>
+                alert('✅ Data berhasil ditambahkan!');
+                document.location.href = 'perpus.php';
+            </script>
+        ";
+
+
+        // echo "✅ Data berhasil ditambahkan!";
+        // echo "<br>";
+        // echo "<script>
+        //         setTimeout(function() {
+        //             window.location.href = 'perpus.php';
+        //         }, 100);
+        //     </>";
+        
     } else {
-        echo "❌ Gagal menambahkan data: " . mysqli_error($koneksi);
+        echo "
+            <script>
+                alert('❌ Gagal menambahkan data!');
+                document.location.href = 'perpus.php';
+            </script>
+        ";
+
+        // echo "❌ Gagal menambahkan data: " . mysqli_error($koneksi);
     }
     // Reset field
     $no_reg = $judul = $pengarang = $tema = $sampul = "";
@@ -76,8 +92,7 @@ if (isset($_POST["submit"])) {
             <!-- Sampul -->
             <div>
                 <label for="sampul" class="block mb-1 font-medium text-gray-700">Sampul</label>
-                <input type="text" name="sampul" id="sampul" class="w-full border p-2 rounded" value="<?= htmlspecialchars($sampul) ?>" required>
-
+                <input type="file" name="sampul" id="sampul" accept="image/*" class="w-full border p-2 rounded" required>
             </div>
 
             <!-- Tombol Navigasi -->
