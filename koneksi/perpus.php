@@ -64,13 +64,13 @@ $no = 1;
                             </td>
                             <td class='px-7 py-8 flex gap-2'>
                                 <!-- tombol aksi -->
-                                <a href='edit.php?id=<?= $data['id_buku'] ?>'
+                                <a href='edit.php?id_buku=<?= $data['id_buku'] ?>'
                                     class='inline-block px-3 py-1 text-sm bg-yellow-500 text-white rounded hover:bg-yellow-600 transition'>
                                      ✏️ Edit
                                 </a>
 
-                                <a href='hapus.php?id=<?= $data['id_buku'] ?>'
-                                    class='inline-block px-3 py-1 text-sm bg-red-600 text-white rounded hover:bg-red-700 transition' onclick="return confirm('Yakin ingin menghapus?')">
+                                <a href='hapus.php?id_buku=<?= $data['id_buku'] ?>'
+                                    class='inline-block px-3 py-1 text-sm bg-red-600 text-white rounded hover:bg-red-700 transition' onclick="return confirm('Yakin ingin menghapus data ini?')">
                                     🗑️ Hapus
                                 </a>
                             </td>

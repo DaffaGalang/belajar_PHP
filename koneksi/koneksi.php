@@ -6,9 +6,9 @@ $db = "phpdasar";
 
 $koneksi = mysqli_connect($host, $user, $pass, $db);
 
-function query($query)
-{
+function query($query){
     global $koneksi;
+
     $result = mysqli_query($koneksi, $query);
     $rows = [];
     while ($row = mysqli_fetch_assoc($result)) {
@@ -40,6 +40,18 @@ function tambah($data) {
     mysqli_query($koneksi, $query);
     return mysqli_affected_rows($koneksi); 
 }
+
+function hapus($id){
+    global $koneksi;
+
+    mysqli_query($koneksi, "DELETE FROM perpus  WHERE id_buku = $id");
+    return mysqli_affected_rows($koneksi);
+}
+
+function ubah (){
+    
+}
+
 
 if (!$koneksi) {
     die("Koneksi Gagal / Bermasalah : " . mysqli_connect_error());
