@@ -3,7 +3,6 @@ include("koneksi.php");
 
 //ambil data dari ID Bukudari URL
 $id = $_GET["id_buku"];
-var_dump($id);
 
 // query data buku berdasarkan id buku
 $book = query("SELECT * FROM perpus WHERE id_buku = $id")[0];
@@ -11,7 +10,7 @@ $book = query("SELECT * FROM perpus WHERE id_buku = $id")[0];
 
 
 // $link = query ("SELECT * FROM perpus ORDER BY id_buku ASC");
-
+$id_buku = "";
 $no_reg = "";
 $judul = "";
 $pengarang = "";
@@ -70,6 +69,9 @@ if (isset($_POST["submit"])) {
         <h1 class="text-xl font-semibold mb-4">Edit Data Buku</h1>
         <form action="" method="post" enctype="multipart/form-data" class="space-y-4">
 
+            <!-- Id Buku -->
+            <input type="hidden" name="id_buku" id="id_buku" value="<?= htmlspecialchars($id_buku), $book["id_buku"] ?>">
+            
             <!-- No Registrasi -->
             <div>
                 <label for="no_reg" class="block mb-1 font-medium text-gray-700">No Registrasi</label>
@@ -103,13 +105,14 @@ if (isset($_POST["submit"])) {
                 <label for="sampul" class="block mb-1 font-medium text-gray-700">Sampul</label>
 
                 <!-- Preview Gambar Lama -->
+                <input type="hidden" name="sampul_lama" value="<?= $book['sampul'] ?>">
                 <?php if (!empty($book['sampul'])): ?>
                     <img src="uploads/<?= htmlspecialchars($book['sampul']) ?>" alt="Sampul Lama" class="mb-2 w-32 rounded shadow">
                     <input type="hidden" name="sampul_lama" value="<?= htmlspecialchars($book['sampul']) ?>">
                 <?php endif; ?>
 
                 <input type="file" name="sampul" id="sampul" accept="image/*" class="w-full border p-2 rounded">
-                <p class="text-sm text-gray-500 mt-1">Kosongkan jika tidak ingin mengubah gambar</p>
+                <p class="text-sm text-gray-500 mt-1">Pilih gambar lain yang ingin digunakan</p>
             </div>
 
             <!-- Tombol Navigasi -->

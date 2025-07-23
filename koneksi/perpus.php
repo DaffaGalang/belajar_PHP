@@ -1,7 +1,11 @@
 <?php
 include("koneksi.php");
 
-$link = query ("SELECT * FROM perpus ORDER BY id_buku ASC");
+$link = query ("SELECT * FROM perpus");
+
+if( isset ($_GET["cari"])) {
+    $link = cari($_GET["serch"]);
+}
 
 $no = 1;
 
@@ -32,10 +36,10 @@ $no = 1;
                     <a href="tambahBuku.php" class="px-5 py-2 bg-violet-600 text-white rounded hover:bg-violet-500">Tambah Data Buku</a>
                 </div>
                 <!-- Pencarian -->
-                <form method="GET" action="" class="flex items-center gap-2 mb-4">
+                <form action="" method="GET" class="flex items-center gap-2 mb-4">
                     <a href="perpus.php" class="px-2 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Refresh</a>
-                    <input type="text" name="cari" class="border rounded px-3 py-2" placeholder="Cari data buku..." value="<?= htmlspecialchars($_GET['cari'] ?? '') ?>">
-                    <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Cari</button>
+                    <input type="text" name="serch" class="border rounded px-3 py-2" placeholder="Cari data buku..." autocomplete="off" value="<?= htmlspecialchars($_GET['cari'] ?? '') ?>">
+                    <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700" name="cari">Cari</button>
                 </form>
             </div>
 
