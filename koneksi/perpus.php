@@ -1,9 +1,9 @@
 <?php
 include("koneksi.php");
 
-$link = query ("SELECT * FROM perpus");
+$link = query("SELECT * FROM perpus");
 
-if( isset ($_GET["cari"])) {
+if (isset($_GET["cari"])) {
     $link = cari($_GET["serch"]);
 }
 
@@ -27,7 +27,7 @@ $no = 1;
         <!-- Tampilan Tabel Data -->
         <div class="overflow-x-auto">
             <h2 class="text-3xl font-bold mb-4 flex justify-center px-4 py-4">Data Buku Perpustakaan</h2>
-            
+
             <!-- Button Navigasi -->
             <div class="flex justify-between items-center mb-4">
                 <!-- Navigasi -->
@@ -43,38 +43,38 @@ $no = 1;
                 </form>
             </div>
 
-            <table class="min-w-full bg-white rounded shadow">
+            <!-- Tabell Data -->
+            <table class="min-w-full bg-white rounded shadow table-fixed">
                 <thead class="bg-gray-200">
                     <tr>
-                        <th class="px-4 py-2 text-left">No</th>
-                        <th class="px-4 py-2 text-left">No Registrasi</th>
-                        <th class="px-4 py-2 text-left">Judul Buku</th>
-                        <th class="px-4 py-2 text-left">Pengarang</th>
-                        <th class="px-4 py-2 text-left">Tema</th>
-                        <th class="px-4 py-2 text-center">Sampul</th>
-                        <th class="px-4 py-2 text-center">Aksi</th>
+                        <th class="px-4 py-5 text-left w-12">No</th>
+                        <th class="px-4 py-5 text-left w-36">No Registrasi</th>
+                        <th class="px-4 py-5 text-left w-48">Judul Buku</th>
+                        <th class="px-4 py-5 text-left w-64">Pengarang</th>
+                        <th class="px-4 py-5 text-left w-48">Tema</th>
+                        <th class="px-4 py-5 text-center w-40">Sampul</th>
+                        <th class="px-4 py-5 text-center w-40">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php foreach ($link as $data) : ?>
-                        <tr class='border-t'>
-                            <td class='px-4 py-2'><?= $no++ ?></td>
-                            <td class='px-4 py-2'><?= htmlspecialchars($data['no_reg']) ?></td>
-                            <td class='px-4 py-2'><?= htmlspecialchars($data['judul']) ?></td>
-                            <td class='px-4 py-2'><?= htmlspecialchars($data['pengarang']) ?></td>
-                            <td class='px-4 py-2'><?= htmlspecialchars($data['tema']) ?></td>
-                            <td class='px-4 py-2'>
-                                <img src="uploads/<?= htmlspecialchars($data['sampul']) ?>" alt="Sampul" class="w-24 h-auto rounded shadow">
+                        <tr class="border-t">
+                            <td class="px-4 py-5 w-12"><?= $no++ ?></td>
+                            <td class="px-4 py-5 w-36"><?= htmlspecialchars($data['no_reg']) ?></td>
+                            <td class="px-4 py-5 w-48"><?= htmlspecialchars($data['judul']) ?></td>
+                            <td class="px-4 py-5 w-64"><?= htmlspecialchars($data['pengarang']) ?></td>
+                            <td class="px-4 py-5 w-48"><?= htmlspecialchars($data['tema']) ?></td>
+                            <td class="px-4 py-5 w-40 text-center">
+                                <img src="uploads/<?= htmlspecialchars($data['sampul']) ?>" alt="Sampul" class="w-24 h-auto mx-auto rounded shadow">
                             </td>
-                            <td class='px-7 py-8 flex gap-2'>
-                                <!-- tombol aksi -->
+                            <td class="px-7 py-12 w-40 flex justify-center gap-2">
                                 <a href='edit.php?id_buku=<?= $data['id_buku'] ?>'
                                     class='inline-block px-3 py-1 text-sm bg-yellow-500 text-white rounded hover:bg-yellow-600 transition'>
-                                     ✏️ Edit
+                                    ✏️ Edit
                                 </a>
-
                                 <a href='hapus.php?id_buku=<?= $data['id_buku'] ?>'
-                                    class='inline-block px-3 py-1 text-sm bg-red-600 text-white rounded hover:bg-red-700 transition' onclick="return confirm('Yakin ingin menghapus data ini?')">
+                                    class='inline-block px-3 py-1 text-sm bg-red-600 text-white rounded hover:bg-red-700 transition'
+                                    onclick="return confirm('Yakin ingin menghapus data ini?')">
                                     🗑️ Hapus
                                 </a>
                             </td>

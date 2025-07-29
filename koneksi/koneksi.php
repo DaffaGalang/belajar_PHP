@@ -89,19 +89,25 @@ function ubah ($data){
                 WHERE id_buku = $id_buku ";
     mysqli_query($koneksi, $query);
     return mysqli_affected_rows($koneksi); 
-
 }
 
 function cari ($serch) {
+    global $koneksi;
+    $serch = mysqli_real_escape_string($koneksi, $serch);
+
     $query = "SELECT * FROM perpus WHERE 
-        judul LIKE '$serch'
-        
+        judul LIKE '%$serch%' OR
+        no_reg LIKE '%$serch%' OR
+        pengarang LIKE '%$serch%' OR
+        tema LIKE '%$serch%'
     ";
 
     return query($query);
 }
 
 
+
+// Test koneksi
 if (!$koneksi) {
     die("Koneksi Gagal / Bermasalah : " . mysqli_connect_error());
 }
