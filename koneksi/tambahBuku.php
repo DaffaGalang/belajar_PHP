@@ -19,15 +19,6 @@ if (isset($_POST["submit"])) {
                 document.location.href = 'perpus.php';
             </script>
         ";
-
-
-        // echo "✅ Data berhasil ditambahkan!";
-        // echo "<br>";
-        // echo "<script>
-        //         setTimeout(function() {
-        //             window.location.href = 'perpus.php';
-        //         }, 100);
-        //     </>";
         
     } else {
         echo "

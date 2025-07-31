@@ -106,6 +106,40 @@ function cari ($serch) {
 }
 
 
+function registrasi ($data){
+    global $koneksi;
+
+    $email = $data["email"];
+    $username = strtolower(stripslashes($data["username"]));
+    $password = mysqli_real_escape_string($koneksi, $data["password"]);
+    $password2 = mysqli_real_escape_string($koneksi, $data["password2"]);
+
+    //cek apakah usernamae sudah ada atau belum
+    $result = mysqli_query($koneksi, "SELECT username FROM user WHERE username = '$username'");
+
+    if(mysqli_fetch_assoc($result)){
+        echo "<script>
+                alert('❌ Gunakan username lain, username ini sudah terdaftar !');
+        </script>";
+        return false;
+    }
+
+    // cek konfirmasi password
+    if( $password !== $password2) {
+        echo "<script>
+                alert('konfirmasi password tidak sesuai');
+        </script>";
+        return false;
+    }
+    // endkripsi password
+    $password = password_hash($password, PASSWORD_DEFAULT);
+
+    //tambahkan ke database
+    mysqli_query($koneksi, "INSERT INTO user (email, username, password) VALUES('$email', '$username', '$password')");
+    return mysqli_affected_rows($koneksi);
+}
+
+
 
 // Test koneksi
 if (!$koneksi) {
