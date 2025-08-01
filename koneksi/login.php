@@ -1,46 +1,50 @@
 <?php
 include "koneksi.php";
 
-$email = "";
 $username = "";
 $password = "";
-$password2 = "";
 
-if( isset ($_POST["submit"])) {
+if( isset($_POST["login"])) {
 
-    if( Registrasi($_POST) > 0){
-        echo "<script>
-            alert('Data User Baru Berhasil ditambahkan ✅');
-        </script>";
-    } else {
-        echo mysqli_error($koneksi);
+    $username = $_POST["username"];
+    $password = $_POST["password"];
+
+    $cekdata = mysqli_query($koneksi, "SELECT * FROM user WHERE username = '$username'");
+
+    //cek username
+    if( mysqli_num_rows($result) === 1 ){
+        //cek password
+        $row = mysqli_fetch_assoc($result);
+        if(password_verify($password, $row["password"])) {
+            header("location: perpus.php");
+            exit;
+        }
     }
+
+    $error = true;
 
 }
 
 
-?>
 
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Halaman Registrasi </title>
+    <title>Halaman Login Administrasi Perpustakaan</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-gray-100 text-gray-800">
     <div class="max-w-2xl mx-auto mt-20 bg-white p-10 rounded shadow">
-        <h1 class="text-2xl font-semibold mb-4 text-center"> REGISTRASI</h1>
+        <h1 class="text-3xl font-semibold mb-4 text-center"> LOGIN</h1>
+        <?php if( isset($error)) : ?>
+                <h2 style="color: red; font-style: italic"> Username / Password Salah </h2>
+        <?php endif ?>
         <form action="" method="post" enctype="multipart/form-data" class="space-y-4">
-
-            <!-- Email -->
-            <div>
-                <label for="email" class="block mb-1 font-medium text-gray-700">Email</label>
-                <input type="email" name="email" id="email" class="w-full border p-2 rounded" value="<?= htmlspecialchars($email) ?>" required>
-
-            </div>
 
             <!-- Username -->
             <div>
@@ -56,17 +60,13 @@ if( isset ($_POST["submit"])) {
 
             </div>
 
-            <!-- Konfirmasi Password -->
-            <div>
-                <label for="password2" class="block mb-1 font-medium text-gray-700">Konfirmasi Password</label>
-                <input type="password" name="password2" id="password2" class="w-full border p-2 rounded" value="<?= htmlspecialchars($password2) ?>" required>
-
+            <!-- Tombol -->
+            <div class="pt-1 flex center">
+                <a href="registrasi.php" class="px-2 py-1 bg-gray-200 text-balck rounded hover:bg-gray-300">Belum Punya Akun</a>
             </div>
 
-            <!-- Tombol -->
             <div class="pt-4 flex flex-col sm:flex-row justify-center items-center sm:space-x-4 space-y-2 sm:space-y-0">
-                <a href="login.php" class="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600">Kembali</a>
-                <button type="submit" name="submit" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">Buat Akun</button>
+                <button type="submit" name="login" class="px-6 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"> Login </button>
             </div>
         </form>
     </div>
