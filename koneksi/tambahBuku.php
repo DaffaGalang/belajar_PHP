@@ -1,4 +1,11 @@
 <?php
+session_start();
+
+if( !isset($_SESSION["login"])) {
+    header("location: login.php");
+    exit;
+}
+
 include("koneksi.php");
 
 // $link = query ("SELECT * FROM perpus ORDER BY id_buku ASC");

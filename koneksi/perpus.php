@@ -1,4 +1,11 @@
 <?php
+session_start();
+
+if( !isset($_SESSION["login"])) {
+    header("location: login.php");
+    exit;
+}
+
 include("koneksi.php");
 
 $link = query("SELECT * FROM perpus");
@@ -32,7 +39,7 @@ $no = 1;
             <div class="flex justify-between items-center mb-4">
                 <!-- Navigasi -->
                 <div class="flex gap-2">
-                    <a href="#" class="px-2 py-2 bg-purple-800 text-white rounded hover:bg-purple-700">Kembali ←</a>
+                    <a href="logout.php" class="px-2 py-2 bg-purple-800 text-white rounded hover:bg-purple-700"> LogOut ← </a>
                     <a href="tambahBuku.php" class="px-5 py-2 bg-violet-600 text-white rounded hover:bg-violet-500">Tambah Data Buku</a>
                 </div>
                 <!-- Pencarian -->

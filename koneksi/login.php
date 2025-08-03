@@ -1,4 +1,11 @@
 <?php
+session_start();
+
+if( isset($_SESSION["login"]) ){
+    header("location: perpus.php");
+    exit;
+}
+
 include "koneksi.php";
 
 $username = "";
@@ -12,10 +19,13 @@ if( isset($_POST["login"])) {
     $cekdata = mysqli_query($koneksi, "SELECT * FROM user WHERE username = '$username'");
 
     //cek username
-    if( mysqli_num_rows($result) === 1 ){
+    if( mysqli_num_rows($cekdata) === 1 ){
         //cek password
-        $row = mysqli_fetch_assoc($result);
+        $row = mysqli_fetch_assoc($cekdata);
         if(password_verify($password, $row["password"])) {
+            //set seesion
+            $_SESSION["login"] = true;
+
             header("location: perpus.php");
             exit;
         }
@@ -24,10 +34,6 @@ if( isset($_POST["login"])) {
     $error = true;
 
 }
-
-
-
-
 ?>
 
 <!DOCTYPE html>
