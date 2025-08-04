@@ -1,12 +1,31 @@
 <?php
 session_start();
+include "koneksi.php";
+
+if (isset($_COOKIE['login']) && $_COOKIE['login'] === 'true') {
+    $_SESSION['login'] = true;
+}
+
+
+if( isset($_COOKIE['id']) && isset($_COOKIE['key']) ) {
+    $id = $_COOKIE['id'];
+    $key = $_COOKIE['key'];
+
+    //ambil berdasarkan id pengguna
+    $result = mysqli_query($koneksi, "SELECT username FROM user WHERE id = $id");
+    $row = mysqli_fetch_assoc($result);
+
+    //cek cookie dan username
+    if( $key === hash('sha256', $row['username']) ){
+        $_SESSION['login'] = true;
+    }
+
+}
 
 if( isset($_SESSION["login"]) ){
     header("location: perpus.php");
     exit;
 }
-
-include "koneksi.php";
 
 $username = "";
 $password = "";
@@ -25,6 +44,14 @@ if( isset($_POST["login"])) {
         if(password_verify($password, $row["password"])) {
             //set seesion
             $_SESSION["login"] = true;
+
+            //check remember me
+            if( isset($_POST["remember"]) ){
+                //make a cookie
+
+                setcookie('id', $row['id_user'], time() + 60);
+                setcookie('key', hash('sha256', $row['username']), time()+60);
+            }
 
             header("location: perpus.php");
             exit;
@@ -64,6 +91,12 @@ if( isset($_POST["login"])) {
                 <label for="password" class="block mb-1 font-medium text-gray-700">Password</label>
                 <input type="password" name="password" id="password" class="w-full border p-2 rounded" value="<?= htmlspecialchars($password) ?>" required>
 
+            </div>
+
+            <!-- Remember -->
+            <div  class="flex items-center space-x-2">
+                <label for="remember" class="block mb-1 font-medium text-gray-700"> Remember Me </label>
+                <input type="checkbox" name="remember" id="remember" class="border p-2 rounded">
             </div>
 
             <!-- Tombol -->
