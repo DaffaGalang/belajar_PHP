@@ -1,4 +1,6 @@
 <?php
+//use Dom\Mysql;
+
 session_start();
 
 if( !isset($_SESSION["login"])) {
@@ -8,7 +10,16 @@ if( !isset($_SESSION["login"])) {
 
 include("koneksi.php");
 
-$link = query("SELECT * FROM perpus");
+//pagination konfigurasi
+$jml_data = 7;
+$jml_buku = count(query("SELECT * FROM perpus"));
+$jml_halaman = ceil($jml_buku / $jml_data);
+$page = ( isset($_GET["halaman"])) ? $_GET["halaman"] : 1;
+
+$awalData = ( $jml_data * $page ) - $jml_data;
+
+
+$link = query("SELECT * FROM perpus LIMIT $awalData, $jml_data");
 
 if (isset($_GET["cari"])) {
     $link = cari($_GET["serch"]);
@@ -90,6 +101,15 @@ $no = 1;
                 </tbody>
             </table>
         </div>
+            <!-- pagination -->
+            <div class="flex justify-center mt-6 space-x-2">
+                <?php for ($i = 1; $i <= $jml_halaman; $i++) : ?>
+                    <a href="?halaman=<?= $i; ?>"
+                    class="px-3 py-2 border rounded-md <?= (isset($_GET['halaman']) && $_GET['halaman'] == $i) ? 'bg-blue-600 text-white' : 'hover:bg-gray-100' ?>">
+                        <?= $i; ?>
+                    </a>
+                <?php endfor; ?>
+            </div>
     </div>
 </body>
 

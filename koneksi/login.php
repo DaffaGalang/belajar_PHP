@@ -8,11 +8,11 @@ if (isset($_COOKIE['login']) && $_COOKIE['login'] === 'true') {
 
 
 if( isset($_COOKIE['id']) && isset($_COOKIE['key']) ) {
-    $id = $_COOKIE['id'];
+    $id = intval($_COOKIE['id']);
     $key = $_COOKIE['key'];
 
     //ambil berdasarkan id pengguna
-    $result = mysqli_query($koneksi, "SELECT username FROM user WHERE id = $id");
+    $result = mysqli_query($koneksi, "SELECT username FROM user WHERE id_user = $id");
     $row = mysqli_fetch_assoc($result);
 
     //cek cookie dan username
