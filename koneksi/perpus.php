@@ -11,7 +11,7 @@ if( !isset($_SESSION["login"])) {
 include("koneksi.php");
 
 //pagination konfigurasi
-$jml_data = 7;
+$jml_data = 4;
 $jml_buku = count(query("SELECT * FROM perpus"));
 $jml_halaman = ceil($jml_buku / $jml_data);
 $page = ( isset($_GET["halaman"])) ? $_GET["halaman"] : 1;
@@ -55,7 +55,7 @@ $no = 1;
                 </div>
                 <!-- Pencarian -->
                 <form action="" method="GET" class="flex items-center gap-2 mb-4">
-                    <a href="perpus.php" class="px-2 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">Refresh</a>
+                    <a href="perpus.php" class="px-2 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"> Refresh ⟳ </a>
                     <input type="text" name="serch" class="border rounded px-3 py-2" placeholder="Cari data buku..." autocomplete="off" value="<?= htmlspecialchars($_GET['cari'] ?? '') ?>">
                     <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700" name="cari">Cari</button>
                 </form>
@@ -75,6 +75,7 @@ $no = 1;
                     </tr>
                 </thead>
                 <tbody>
+                    <?php $no = ($page - 1) * $jml_data + 1; ?>
                     <?php foreach ($link as $data) : ?>
                         <tr class="border-t">
                             <td class="px-4 py-5 w-12"><?= $no++ ?></td>
@@ -103,12 +104,20 @@ $no = 1;
         </div>
             <!-- pagination -->
             <div class="flex justify-center mt-6 space-x-2">
+                <?php if( $page > 1 ) :?>
+                    <a href="?halaman=<?= $page - 1?>" class="px-3 py-2 border rounded-md 'bg-blue-600 text-white' : 'hover:bg-gray-100'"> ← </a>
+                <?php endif; ?>
+
                 <?php for ($i = 1; $i <= $jml_halaman; $i++) : ?>
                     <a href="?halaman=<?= $i; ?>"
                     class="px-3 py-2 border rounded-md <?= (isset($_GET['halaman']) && $_GET['halaman'] == $i) ? 'bg-blue-600 text-white' : 'hover:bg-gray-100' ?>">
                         <?= $i; ?>
                     </a>
                 <?php endfor; ?>
+
+                <?php if( $page < $jml_data ) :?>
+                    <a href="?halaman=<?= $page + 1?>" class="px-3 py-2 border rounded-md 'bg-blue-600 text-white' : 'hover:bg-gray-100'"> → </a>
+                <?php endif; ?>
             </div>
     </div>
 </body>
