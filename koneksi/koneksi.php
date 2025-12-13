@@ -18,8 +18,6 @@ function query($query){
     return $rows;
 }
 
-
-
 //function koneksi tambah data
 function tambah($data) {
     global $koneksi;

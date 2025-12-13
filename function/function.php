@@ -23,7 +23,11 @@
     $bg = $_POST['pembagi'];
 
     function SegitTigas($a, $t, $bg){
-        return ($a * $t) / $bg;
+        if($bg != 0){
+            return ($a * $t) / $bg;    
+        } else{
+            return 0;
+        }
     }
 
     $luasSegiTiga = SegitTigas($a, $t, $bg);
