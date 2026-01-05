@@ -33,7 +33,7 @@
         ["UDINUS","6 Fakultas","873 Mahasiswa","325 Dosen","Akreditasi Unggul"],
         ["UNES","12 Fakultas","1320 Mahasiswa","435 Dosen","Akreditasi Unggul"],
         ["USM","7 Fakultas","593 Mahasiswa","298 Dosen","Akreditasi A"],
-        ["UPGRIS","5 Fakultas","428 Mahasiswa","198 Dosen","Akreditasi A"]
+        ["UPGRIS","5","5 Fakultas","428 Mahasiswa","198 Dosen","Akreditasi A"] //nambah 1 data baru buat belajar
       ];
 
 
@@ -49,7 +49,11 @@
       } else{
         echo "Data tidak ditemukan";
       }
-      
+
+      echo "<br> Saya " .$arr[1] . ", saya sedang bekerja di pemerintahan dan saya alumni kampus " . $univ[0][0] . " angkatan tahun " . $arr[4] . "<br>";
+
+      echo "saya berkuliah di " . $univ[0][0] . " pada jurusan " . $arr[3] . " dan NIM saya adalah " . $arr[2] . ".<br> Jarak antara kost dan kampus saya adala " . $univ[3][1] . $ukur["jalan"] . "<br>";
+
       
     ?>
 
